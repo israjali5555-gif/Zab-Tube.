@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zab-Tube Shorts</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: black; color: white; font-family: sans-serif; overflow: hidden; }
+
+        /* Full Screen Shorts Container */
+        .shorts-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .video-full {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            background: #1a1a1a;
+        }
+
+        /* Side Buttons like Screenshot 4 */
+        .side-icons {
+            position: absolute;
+            right: 15px;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .icon-btn { text-align: center; font-size: 12px; }
+        .icon-btn i { font-size: 28px; display: block; margin-bottom: 5px; }
+
+        /* Bottom Info (Title & Channel) */
+        .shorts-info {
+            position: absolute;
+            bottom: 70px;
+            left: 15px;
+            right: 80px;
+        }
+        .channel-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .chan-pic { width: 32px; height: 32px; border-radius: 50%; background: #555; }
+        .sub-btn { background: white; color: black; padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: bold; }
+        .shorts-title { font-size: 14px; margin-bottom: 10px; line-height: 1.4; }
+
+        /* Bottom Nav (Same as Index) */
+        .bottom-bar {
+            position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.9);
+            display: flex; justify-content: space-around; padding: 10px 0;
+            border-top: 1px solid #333; font-size: 11px; z-index: 100;
+        }
+        .nav-tab { text-align: center; color: white; text-decoration: none; }
+
+    </style>
+</head>
+<body>
+
+    <div class="shorts-container">
+        <div class="video-full" style="display:flex; align-items:center; justify-content:center;">
+             <p>Shorts Video Loading...</p>
+        </div>
+
+        <div class="side-icons">
+            <div class="icon-btn">👍<br>156K</div>
+            <div class="icon-btn">👎<br>Dislike</div>
+            <div class="icon-btn">💬<br>890</div>
+            <div class="icon-btn">↪️<br>Share</div>
+            <div class="icon-btn">🔄<br>Remix</div>
+        </div>
+
+        <div class="shorts-info">
+            <div class="channel-row">
+                <div class="chan-pic"></div>
+                <span style="font-weight:bold;">@IsrajVlogs</span>
+                <button class="sub-btn">Subscribe</button>
+            </div>
+            <div class="shorts-title">Jab India ka apna YouTube ban gaya! Zab-Tube is here 🔥 #ZabTube #Tech #India</div>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <a href="index.html" class="nav-tab">🏠<br>Home</a>
+        <a href="shorts.html" class="nav-tab" style="font-weight:bold;">⚡<br>Shorts</a>
+        <a href="#" class="nav-tab" style="font-size: 25px;">+</a>
+        <a href="#" class="nav-tab">📺<br>Subs</a>
+        <a href="#" class="nav-tab">👤<br>You</a>
+    </div>
+
+</body>
+</html>
+
