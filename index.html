@@ -3,136 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zab-Tube | Unique Edition</title>
+    <title>Zab-Tube | Profile Sync</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #080808; color: white; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', Arial, sans-serif; }
 
-        /* --- UNIQUE HEADER DESIGN --- */
+        /* --- HEADER --- */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 12px 18px; position: sticky; top: 0; background: rgba(8, 8, 8, 0.95); 
-            z-index: 1000; border-bottom: 1px solid #1a1a1a;
+            padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000; 
         }
-        .logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
-        .logo span { color: #ff0033; }
+        .logo { font-size: 20px; font-weight: bold; color: #fff; }
+        .logo span { color: #ff0000; }
         
-        .header-actions { display: flex; gap: 12px; }
-        /* Search aur Bell ek hi style mein */
-        .btn-round { 
-            background: #1a1a1a; width: 42px; height: 42px; 
-            border-radius: 12px; display: flex; align-items: center; 
-            justify-content: center; font-size: 18px; cursor: pointer;
-            border: 1px solid #222; transition: 0.3s;
-        }
-        .btn-round:active { transform: scale(0.9); background: #333; }
+        .header-icons { display: flex; gap: 18px; align-items: center; }
+        .icon-white { color: white !important; font-size: 20px; cursor: pointer; }
 
-        /* --- CATEGORIES --- */
-        .categories { 
-            display: flex; gap: 10px; overflow-x: auto; padding: 12px 15px; 
-            background: #080808; scrollbar-width: none; 
+        /* Gol Profile Photo Style (Header & Video) */
+        .user-pfp { 
+            width: 32px; height: 32px; border-radius: 50%; 
+            object-fit: cover; border: 1px solid #444; background: #222;
         }
-        .categories::-webkit-scrollbar { display: none; }
-        .chip { 
-            background: #1a1a1a; padding: 8px 18px; border-radius: 10px; 
-            font-size: 14px; white-space: nowrap; color: #ccc; border: 1px solid #222;
-        }
-        .chip.active { background: #ff0033; color: white; border: none; }
 
-        /* --- VIDEO FEED --- */
-        .main-feed { padding: 5px 0 90px 0; }
-        .video-card { width: 100%; margin-bottom: 25px; cursor: pointer; }
-        .thumb-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
-        .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; background: #0f0f0f; scrollbar-width: none; }
+        .chip { background: #272727; padding: 7px 15px; border-radius: 8px; font-size: 14px; white-space: nowrap; }
+        .chip.active { background: white; color: black; }
+
+        /* --- VIDEO LIST --- */
+        .main-feed { padding-bottom: 70px; }
+        .video-item { margin-bottom: 25px; text-decoration: none; color: white; display: block; }
+        .thumb-wrap { position: relative; width: 100%; }
+        .thumb-wrap img { width: 100%; display: block; }
+        .time-tag { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+        .video-info { display: flex; padding: 12px; gap: 12px; }
+        /* Video ke niche wali gol photo */
+        .video-pfp { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: #333; }
         
-        /* Duration/Timing Tag */
-        .duration { 
-            position: absolute; bottom: 10px; right: 10px; 
-            background: rgba(0,0,0,0.8); padding: 3px 8px; 
-            border-radius: 6px; font-size: 12px; font-weight: bold; 
-        }
+        .v-title { font-size: 15px; font-weight: 500; line-height: 1.3; margin-bottom: 4px; }
+        .v-meta { font-size: 12px; color: #aaa; }
 
-        .video-info { display: flex; padding: 12px 15px; gap: 15px; }
-        .profile-img { width: 40px; height: 40px; border-radius: 12px; background: #222; flex-shrink: 0; }
-        .v-details { flex: 1; }
-        .v-title { font-size: 16px; font-weight: 600; line-height: 1.3; color: #fff; margin-bottom: 5px; }
-        .v-meta { font-size: 12px; color: #888; }
-
-        /* --- BOTTOM NAVIGATION (UNIQUE STYLE) --- */
+        /* --- BOTTOM BAR --- */
         .bottom-bar { 
-            position: fixed; bottom: 0; width: 100%; background: #080808; 
-            display: flex; justify-content: space-around; align-items: center; 
-            padding: 10px 0; border-top: 1px solid #1a1a1a; z-index: 1001;
+            position: fixed; bottom: 0; width: 100%; background: #0f0f0f; 
+            display: flex; justify-content: space-around; padding: 8px 0; 
+            border-top: 1px solid #272727; z-index: 1001;
         }
-        .nav-link { text-align: center; color: #888; text-decoration: none; font-size: 11px; flex: 1; }
-        .nav-link.active { color: #fff; }
-        .nav-link i { font-size: 22px; display: block; margin-bottom: 3px; }
-
-        /* Plus Button - Center Unique */
-        .plus-btn { 
-            background: #ff0033; width: 48px; height: 48px; 
-            border-radius: 15px; display: flex; align-items: center; 
-            justify-content: center; font-size: 28px; color: white; 
-            box-shadow: 0 4px 15px rgba(255, 0, 51, 0.3); margin-top: -20px;
-        }
+        .nav-tab { text-align: center; color: white; text-decoration: none; flex: 1; font-size: 11px; }
+        .nav-icon { font-size: 22px; display: block; margin-bottom: 2px; }
+        .nav-pfp { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto 2px auto; display: block; border: 1px solid white; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><span>Z</span>ab-Tube</div>
-        <div class="header-actions">
-            <div class="btn-round">🔍</div>
-            <div class="btn-round">🔔</div>
-            <div class="btn-round">👤</div>
+        <div class="logo"><span>►</span> Zab-Tube</div>
+        <div class="header-icons">
+            <span class="icon-white">🔍</span>
+            <span class="icon-white">🔔</span>
+            <img src="https://www.w3schools.com/howto/img_avatar.png" class="user-pfp" id="header-profile">
         </div>
     </header>
 
     <div class="categories">
-        <div class="chip active">Home</div>
-        <div class="chip">Maha Library</div>
-        <div class="chip">Shorts</div>
-        <div class="chip">Bhojpuri</div>
+        <div class="chip active">All</div>
         <div class="chip">Music</div>
         <div class="chip">Gaming</div>
+        <div class="chip">Bhojpuri</div>
     </div>
 
-    <div class="main-feed" id="feed">
+    <div class="main-feed" id="video-feed">
         </div>
 
     <div class="bottom-bar">
-        <a href="#" class="nav-link active">🏠<br>Home</a>
-        <a href="#" class="nav-link">⚡<br>Shorts</a>
-        <div class="plus-btn">+</div>
-        <a href="#" class="nav-link">📺<br>Subs</a>
-        <a href="#" class="nav-link">📂<br>You</a>
+        <a href="index.html" class="nav-tab"><span class="nav-icon">🏠</span>Home</a>
+        <a href="#" class="nav-tab"><span class="nav-icon">⚡</span>Shorts</a>
+        <div class="nav-tab" style="font-size: 30px; margin-top: -8px;">+</div>
+        <a href="#" class="nav-tab"><span class="nav-icon">📺</span>Subs</a>
+        <a href="you.html" class="nav-tab">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" class="nav-pfp" id="bottom-profile">
+            You
+        </a>
     </div>
 
     <script>
-        const myData = [
-            { id: 'Ks-_MzkzoQg', title: 'Blockbuster Hit: Zab-Tube Special 2024', time: '05:40', thumb: 'https://img.youtube.com/vi/Ks-_MzkzoQg/maxresdefault.jpg' },
-            { id: '3JZ_D3ELwOQ', title: 'South Action Movie | Dubbed Hindi Full', time: '02:15:22', thumb: 'https://img.youtube.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg' },
-            { id: 'dQw4w9WgXcQ', title: 'Trending Bhojpuri Hits Collection', time: '12:00', thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg' },
-            { id: 'yJg-Y5byMMw', title: 'New Punjabi Beat - Official Music', time: '03:15', thumb: 'https://img.youtube.com/vi/yJg-Y5byMMw/maxresdefault.jpg' }
-        ];
+    // User ki photo ka link (Jab login hoga toh yahan link badal jayega)
+    const userPhoto = "https://www.w3schools.com/howto/img_avatar.png";
 
-        const feed = document.getElementById('feed');
-        myData.forEach(v => {
-            feed.innerHTML += `
-                <div class="video-card" onclick="location.href='player.html?v=${v.id}'">
-                    <div class="thumb-wrapper">
-                        <img src="${v.thumb}">
-                        <div class="duration">${v.time}</div>
-                    </div>
-                    <div class="video-info">
-                        <div class="profile-img"></div>
-                        <div class="v-details">
-                            <div class="v-title">${v.title}</div>
-                            <div class="v-meta">Zab-Tube • 500K views • 20 mins ago</div>
-                        </div>
-                    </div>
-                </div>`;
-        });
+    async function loadVideos() {
+        const feed = document.getElementById('video-feed');
+        const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uYZ5FSM9P_Q')}`;
+
+        try {
+            const res = await fetch(fetchUrl);
+            const data = await res.json();
+            if(data.items) {
+                feed.innerHTML = '';
+                data.items.forEach(item => {
+                    const vId = item.guid.split(':').pop();
+                    feed.innerHTML += `
+                        <div class="video-item" onclick="location.href='player.html?v=${vId}'">
+                            <div class="thumb-wrap">
+                                <img src="${item.thumbnail}">
+                                <div class="time-tag">10:20</div>
+                            </div>
+                            <div class="video-info">
+                                <img src="${userPhoto}" class="video-pfp">
+                                <div style="flex:1;">
+                                    <div class="v-title">${item.title}</div>
+                                    <div class="v-meta">Zab-Tube • 1.5M views</div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+        } catch(e) { console.log("Error!"); }
+    }
+    window.onload = loadVideos;
     </script>
 </body>
 </html>
