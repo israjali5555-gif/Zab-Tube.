@@ -3,106 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zab-Tube | Home</title>
+    <title>Zab-Tube | Home Fix</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0f0f0f; color: white; font-family: Roboto, Arial, sans-serif; }
-        
-        /* Header */
-        header { display: flex; justify-content: space-between; padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', sans-serif; }
+        header { display: flex; justify-content: space-between; padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000; align-items: center; }
         .logo { font-size: 20px; font-weight: bold; color: white; }
-        .logo span { color: red; }
-
-        /* Categories */
+        .logo span { color: #ff0000; }
         .categories { display: flex; gap: 10px; overflow-x: auto; padding: 10px; scrollbar-width: none; }
-        .chip { background: #272727; padding: 6px 12px; border-radius: 8px; font-size: 14px; white-space: nowrap; }
+        .chip { background: #272727; padding: 7px 15px; border-radius: 8px; font-size: 14px; white-space: nowrap; }
         .chip.active { background: white; color: black; }
-
-        /* Video Styling (Exactly like YouTube) */
-        .main-feed { padding-bottom: 70px; }
-        .video-card { width: 100%; margin-bottom: 15px; cursor: pointer; }
-        .thumbnail-box { position: relative; width: 100%; aspect-ratio: 16/9; background: #222; }
-        .thumbnail-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        .video-details { display: flex; padding: 12px; gap: 12px; }
-        .channel-icon { width: 36px; height: 36px; border-radius: 50%; background: #444; flex-shrink: 0; }
-        .text-info { flex: 1; }
-        .video-title { font-size: 15px; font-weight: 500; line-height: 1.3; color: white; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .video-meta { font-size: 12px; color: #aaa; margin-top: 4px; }
+        /* YouTube Style Design */
+        .main-feed { padding-bottom: 80px; }
+        .video-card { width: 100%; margin-bottom: 20px; cursor: pointer; }
+        .thumb-wrap { width: 100%; aspect-ratio: 16/9; background: #222; overflow: hidden; }
+        .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .video-info { display: flex; padding: 12px; gap: 12px; }
+        .channel-pfp { width: 36px; height: 36px; border-radius: 50%; background: #444; flex-shrink: 0; }
+        .v-title { font-size: 15px; font-weight: 500; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .v-meta { font-size: 12px; color: #aaa; margin-top: 4px; }
 
-        /* Bottom Bar */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #0f0f0f; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #272727; }
-        .nav-item { text-align: center; font-size: 10px; color: white; text-decoration: none; }
+        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: #0f0f0f; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #272727; font-size: 10px; }
+        .nav-item { text-align: center; color: white; text-decoration: none; opacity: 0.8; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><span>►</span> Zab-Tube</div>
-        <div style="font-size: 20px;">🔍 &nbsp; 👤</div>
+        <div style="font-size: 18px;">🔍 &nbsp; 🔔 &nbsp; 👤</div>
     </header>
 
     <div class="categories">
         <div class="chip active">All</div>
         <div class="chip">New to you</div>
         <div class="chip">Music</div>
-        <div class="chip">Live</div>
+        <div class="chip">Bhojpuri</div>
+        <div class="chip">South Movie</div>
     </div>
 
     <div class="main-feed" id="video-feed">
-        <p style="text-align:center; padding:20px;">Loading Videos...</p>
+        <p id="loading-msg" style="text-align:center; padding:50px; color:#aaa;">Searching Videos...</p>
     </div>
 
-    <div class="bottom-nav">
+    <div class="bottom-bar">
         <a href="index.html" class="nav-item">🏠<br>Home</a>
-        <a href="shorts.html" class="nav-item">⚡<br>Shorts</a>
-        <div class="nav-item" style="font-size:24px; margin-top:-5px;">+</div>
+        <a href="#" class="nav-item">⚡<br>Shorts</a>
+        <div class="nav-item" style="font-size:25px; margin-top:-5px;">+</div>
         <a href="#" class="nav-item">📺<br>Subs</a>
         <a href="you.html" class="nav-item">👤<br>You</a>
     </div>
 
-<script>
-async function loadYouTubeStyle() {
-    const feed = document.getElementById('video-feed');
-    // T-Series Channel ID for testing (High Quality Thumbnails)
-    const channelId = 'UC_x5XG1OV2P6uYZ5FSM9P_Q'; 
-    const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + channelId)}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+    <script>
+    async function loadFixVideos() {
+        const feed = document.getElementById('video-feed');
+        // T-Series (UC_x5XG1OV2P6uYZ5FSM9P_Q) aur Goldmines (UC295C_H_C6v6L868qA7_A5g) ki videos
+        const channels = ['UC_x5XG1OV2P6uYZ5FSM9P_Q', 'UC295C_H_C6v6L868qA7_A5g'];
         
-        if (data.items && data.items.length > 0) {
-            feed.innerHTML = ''; // Loading text hatao
-            
-            data.items.forEach(item => {
-                // Video ID nikalna taaki play ho sake
-                const vId = item.guid.split(':').pop();
-                
-                // YouTube style card design
+        let allItems = [];
+
+        for(let id of channels) {
+            try {
+                const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + id)}`;
+                const response = await fetch(fetchUrl);
+                const data = await response.json();
+                if(data.items) allItems = [...allItems, ...data.items];
+            } catch(e) { console.log("Error fetching channel: " + id); }
+        }
+
+        if(allItems.length > 0) {
+            feed.innerHTML = ''; // Loading mitao
+            allItems.sort(() => Math.random() - 0.5); // Mix videos
+
+            allItems.forEach(item => {
+                // Correct Video ID logic for player.html
+                const vId = item.guid.split(':').pop(); 
                 feed.innerHTML += `
-                    <div class="video-card" onclick="window.location.href='player.html?v=${vId}'">
-                        <div class="thumbnail-box">
-                            <img src="${item.thumbnail}" alt="thumbnail">
+                    <div class="video-card" onclick="location.href='player.html?v=${vId}'">
+                        <div class="thumb-wrap">
+                            <img src="${item.thumbnail}" alt="thumb">
                         </div>
-                        <div class="video-details">
-                            <div class="channel-icon"></div>
-                            <div class="text-info">
-                                <div class="video-title">${item.title}</div>
-                                <div class="video-meta">Zab-Tube • 1.2M views • Trending</div>
+                        <div class="video-info">
+                            <div class="channel-pfp"></div>
+                            <div>
+                                <div class="v-title">${item.title}</div>
+                                <div class="v-meta">Zab-Tube • Trending • Now</div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
+        } else {
+            document.getElementById('loading-msg').innerText = "Network Error! Please Refresh.";
         }
-    } catch (error) {
-        feed.innerHTML = '<p style="text-align:center; color:red;">Check Internet!</p>';
     }
-}
-
-window.onload = loadYouTubeStyle;
-</script>
-
+    window.onload = loadFixVideos;
+    </script>
 </body>
 </html>
