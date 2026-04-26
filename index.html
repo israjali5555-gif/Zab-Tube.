@@ -79,63 +79,46 @@
         <div class="chip">Bollywood</div>
     </div>
 
-    <div class="main-feed">
+    <div class="main-feed" id="video-feed">
     </div>
-
-            <div class="bottom-bar">
-    <a href="index.html" class="nav-tab active">
-        <div style="font-size: 20px;">🏠</div>
-        <div style="font-size: 10px;">Home</div>
-    </a>
-    <a href="shorts.html" class="nav-tab">
-        <div style="font-size: 20px;">⚡</div>
-        <div style="font-size: 10px;">Shorts</div>
-    </a>
-    <a href="upload.html" class="nav-tab">
-        <div style="font-size: 35px; margin-top: -5px;">+</div>
-    </a>
-    <a href="#" class="nav-tab">
-        <div style="font-size: 20px;">📺</div>
-        <div style="font-size: 10px;">Subs</div>
-    </a>
-    <a href="you.html" class="nav-tab">
-        <div style="font-size: 20px;">👤</div>
-        <div style="font-size: 10px;">You</div>
-    </a>
+     
 
 <script>
 async function loadHomeVideos() {
-    const channelId = 'UC_x5XG1OV2P6uYZ5FSM9P_Q'; // T-Series ID jo kaam kar raha hai
-    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-    const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    // Ye link YouTube ki trending aur free library se videos uthayega
+    const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uYZ5FSM9P_Q')}`;
 
     try {
         const response = await fetch(fetchUrl);
         const data = await response.json();
-        const feed = document.querySelector('.main-feed');
+        const feed = document.getElementById('video-feed');
         
         if(data.items) {
-            feed.innerHTML = ''; 
+            feed.innerHTML = ''; // Khali dabba saaf karein
             data.items.forEach(item => {
-                // Video ID nikalne ka sahi tarika taki "Video Unavailable" na aaye
                 const videoId = item.guid.split(':').pop(); 
-                
                 feed.innerHTML += `
-                    <a href="player.html?v=${videoId}" class="video-item" style="display:block; margin-bottom:20px; text-decoration:none;">
-                        <div class="thumb-wrap">
+                    <div class="video-item" onclick="location.href='player.html?v=${videoId}'" style="cursor:pointer; margin-bottom:20px;">
+                        <div class="thumb-wrap" style="position:relative;">
                             <img src="${item.thumbnail}" style="width:100%; border-radius:12px;">
                         </div>
-                        <div style="color:white; padding:10px; font-weight:bold; font-size:15px;">${item.title}</div>
-                        <div style="color:#aaa; padding-left:10px; font-size:12px;">Zab-Tube • Trending Video</div>
-                    </a>`;
+                        <div class="video-info" style="display:flex; padding:12px; gap:12px;">
+                            <div style="width:36px; height:36px; border-radius:50%; background:#333;"></div>
+                            <div class="title-box">
+                                <div class="v-title" style="color:white; font-weight:bold; font-size:14px; line-height:1.2;">${item.title}</div>
+                                <div class="v-meta" style="color:#aaa; font-size:12px; margin-top:4px;">Zab-Tube • 1.2M views • 2 hours ago</div>
+                            </div>
+                        </div>
+                    </div>`;
             });
         }
     } catch (e) {
-        console.log("Error loading videos");
+        console.log("Videos load nahi hui!");
     }
 }
 window.onload = loadHomeVideos;
 </script>
+
 
 </html>
 
