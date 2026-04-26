@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zab-Tube | Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', Arial, sans-serif; }
+
+        /* Header with Search */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000;
+        }
+        .logo { font-size: 20px; font-weight: bold; color: #fff; letter-spacing: -1px; }
+        .logo span { color: #ff0000; }
+        .header-icons { display: flex; gap: 18px; font-size: 20px; }
+
+        /* Category Chips */
+        .categories {
+            display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px;
+            scrollbar-width: none; background: #0f0f0f;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        .chip {
+            background: #272727; padding: 7px 15px; border-radius: 8px;
+            font-size: 14px; white-space: nowrap; cursor: pointer;
+        }
+        .chip.active { background: white; color: black; }
+
+        /* Video List Area */
+        .main-feed { padding-bottom: 70px; }
+        
+        .video-item { margin-bottom: 25px; text-decoration: none; color: white; display: block; }
+        .thumb-wrap { position: relative; width: 100%; }
+        .thumb-wrap img { width: 100%; display: block; }
+        .time-tag { 
+            position: absolute; bottom: 8px; right: 8px; 
+            background: rgba(0,0,0,0.8); padding: 2px 6px; 
+            border-radius: 4px; font-size: 12px; 
+        }
+
+        .video-info { display: flex; padding: 12px; gap: 12px; }
+        .chan-img { width: 36px; height: 36px; border-radius: 50%; background: #333; flex-shrink: 0; }
+        .title-box { flex: 1; }
+        .v-title { font-size: 16px; font-weight: 500; line-height: 1.3; margin-bottom: 4px; }
+        .v-meta { font-size: 13px; color: #aaa; }
+
+        /* Bottom Menu like Screenshot 1 */
+        .bottom-bar {
+            position: fixed; bottom: 0; width: 100%; background: #0f0f0f;
+            display: flex; justify-content: space-around; padding: 8px 0;
+            border-top: 1px solid #272727; font-size: 11px;
+        }
+        .nav-tab { text-align: center; color: white; text-decoration: none; opacity: 0.8; }
+        .nav-tab.active { opacity: 1; }
+        .nav-tab i { font-size: 22px; display: block; margin-bottom: 2px; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><span>▶</span> Zab-Tube</div>
+        <div class="header-icons">🔍 🔔 👤</div>
+    </header>
+
+    <div class="categories">
+        <div class="chip active">All</div>
+        <div class="chip">New to you</div>
+        <div class="chip">Music</div>
+        <div class="chip">Gaming</div>
+        <div class="chip">Live</div>
+        <div class="chip">Bollywood</div>
+    </div>
+
+    <div class="main-feed">
+        <a href="player.html" class="video-item">
+            <div class="thumb-wrap">
+                <img src="https://via.placeholder.com/640x360/1a1a1a/ffffff?text=Zab-Tube+Video+1" alt="Thumbnail">
+                <div class="time-tag">5:22</div>
+            </div>
+            <div class="video-info">
+                <div class="chan-img"></div>
+                <div class="title-box">
+                    <div class="v-title">Chand Sitare - Kaho Naa Pyaar Hai | Zab-Tube Special</div>
+                    <div class="v-meta">ZMC Classic • 1.3 crore views • 1 yr ago</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="player.html" class="video-item">
+            <div class="thumb-wrap">
+                <img src="https://via.placeholder.com/640x360/1a1a1a/ffffff?text=Zab-Tube+Video+2" alt="Thumbnail">
+                <div class="time-tag">12:10</div>
+            </div>
+            <div class="video-info">
+                <div class="chan-img"></div>
+                <div class="title-box">
+                    <div class="v-title">Ghar Se Nikalte Hi - Full HD Video | Udit Narayan</div>
+                    <div class="v-meta">T-Series • 1 crore views • 1 year ago</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="bottom-bar">
+        <a href="index.html" class="nav-tab active">🏠<br>Home</a>
+        <a href="#" class="nav-tab">⚡<br>Shorts</a>
+        <a href="#" class="nav-tab" style="font-size: 30px;">+</a>
+        <a href="#" class="nav-tab">📺<br>Subs</a>
+        <a href="#" class="nav-tab">👤<br>You</a>
+    </div>
+
+</body>
+</html>
+
