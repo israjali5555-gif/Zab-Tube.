@@ -80,36 +80,8 @@
     </div>
 
     <div class="main-feed">
-        <a href="player.html?v=vS_a8Ed7S7M" class="video-item">
-    <div class="thumb-wrap">
-        <img src="https://img.youtube.com/vi/vS_a8Ed7S7M/maxresdefault.jpg" alt="Thumbnail">
-        <div class="time-tag">5:22</div>
     </div>
 
-                <div class="time-tag">5:22</div>
-            </div>
-            <div class="video-info">
-                <div class="chan-img"></div>
-                <div class="title-box">
-                    <div class="v-title">Chand Sitare - Kaho Naa Pyaar Hai | Zab-Tube Special</div>
-                    <div class="v-meta">ZMC Classic • 1.3 crore views • 1 yr ago</div>
-                </div>
-            </div>
-        </a>
-
-       <a href="player.html?v=6p2o7T_E-x0" class="video-item">
-    <div class="thumb-wrap">
-        <img src="https://img.youtube.com/vi/6p2o7T_E-x0/maxresdefault.jpg" alt="Thumbnail">
-        <div class="time-tag">12:10</div>
-    </div>
- 
- 
-            <div class="video-info">
-                <div class="chan-img"></div>
-                <div class="title-box">
-                    <div class="v-title">Ghar Se Nikalte Hi - Full HD Video | Udit Narayan</div>
-                    <div class="v-meta">T-Series • 1 crore views • 1 year ago</div>
-                </div>
             <div class="bottom-bar">
     <a href="index.html" class="nav-tab active">
         <div style="font-size: 20px;">🏠</div>
@@ -131,48 +103,38 @@
         <div style="font-size: 10px;">You</div>
     </a>
 
-
-</body>
 <script>
 async function loadHomeVideos() {
-    // Ye link YouTube ke "Trending" ya "New" feed se videos uthayega
-    // Humne yahan ek public converter use kiya hai jo bina API Key ke kaam karta hai
-    const channelId = 'UCq-Fj5jknLsUf-MWSy4_brA'; // Aap kisi bhi bade channel ki ID yahan daal sakte hain
+    // Testing ke liye T-Series ka ID (Ye hamesha chalta hai)
+    const channelId = 'UC_x5XG1OV2P6uYZ5FSM9P_Q'; 
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
     const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
     try {
         const response = await fetch(fetchUrl);
         const data = await response.json();
-        
         const feed = document.querySelector('.main-feed');
-        feed.innerHTML = ''; // Purana khali dabba saaf karein
-
-        data.items.forEach(item => {
-            // Video ID nikalne ke liye
-            const videoId = item.link.split('v=')[1];
-            const title = item.title;
-            const thumb = item.thumbnail;
-
-            feed.innerHTML += `
-                <a href="player.html?v=${videoId}" class="video-item">
-                    <div class="thumb-wrap">
-                        <img src="${thumb}" alt="thumbnail">
-                    </div>
-                    <div class="video-info">
-                        <div class="v-title">${title}</div>
-                        <div class="v-meta">Zab-Tube • New Video</div>
-                    </div>
-                </a>`;
-        });
+        
+        if(data.items) {
+            feed.innerHTML = ''; // Purana khali karo
+            data.items.forEach(item => {
+                const videoId = item.link.split('v=')[1];
+                feed.innerHTML += `
+                    <a href="player.html?v=${videoId}" class="video-item" style="display:block; margin-bottom:15px; text-decoration:none;">
+                        <div class="thumb-wrap">
+                            <img src="${item.thumbnail}" style="width:100%; border-radius:10px;">
+                        </div>
+                        <div style="color:white; padding:10px; font-weight:bold;">${item.title}</div>
+                    </a>`;
+            });
+        }
     } catch (e) {
         console.log("Error loading videos");
     }
 }
-
-// Page load hote hi videos aa jayengi
 window.onload = loadHomeVideos;
 </script>
+
 
 </html>
 
