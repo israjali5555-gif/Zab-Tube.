@@ -39,9 +39,16 @@
 <body>
 
     <div class="video-container">
-        <video controls poster="https://via.placeholder.com/640x360/000/fff?text=Zab-Tube+Video">
-            </video>
-    </div>
+    <iframe id="mainPlayer" 
+        width="100%" 
+        style="aspect-ratio: 16/9;" 
+        src="https://www.youtube.com/embed/vS_a8Ed7S7M?autoplay=1&rel=0" 
+        title="Zab-Tube Video Player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+
+
 
     <div class="content-padding">
         <div class="video-title">Chand Sitare - Kaho Naa Pyaar Hai | Hrithik Roshan & Amisha Patel | Zab-Tube Classics</div>
@@ -80,6 +87,17 @@
             </div>
         </div>
     </div>
+<script>
+    // URL se video ID nikalne ka magic
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get('v');
+    
+    // Agar link mein video ID hai, toh use player mein set karo
+    if (videoId) {
+        const player = document.getElementById('mainPlayer');
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    }
+</script>
 
 </body>
 </html>
