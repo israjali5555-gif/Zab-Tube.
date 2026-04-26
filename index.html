@@ -133,5 +133,46 @@
 
 
 </body>
+<script>
+async function loadHomeVideos() {
+    // Ye link YouTube ke "Trending" ya "New" feed se videos uthayega
+    // Humne yahan ek public converter use kiya hai jo bina API Key ke kaam karta hai
+    const channelId = 'UCq-Fj5jknLsUf-MWSy4_brA'; // Aap kisi bhi bade channel ki ID yahan daal sakte hain
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+    const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    try {
+        const response = await fetch(fetchUrl);
+        const data = await response.json();
+        
+        const feed = document.querySelector('.main-feed');
+        feed.innerHTML = ''; // Purana khali dabba saaf karein
+
+        data.items.forEach(item => {
+            // Video ID nikalne ke liye
+            const videoId = item.link.split('v=')[1];
+            const title = item.title;
+            const thumb = item.thumbnail;
+
+            feed.innerHTML += `
+                <a href="player.html?v=${videoId}" class="video-item">
+                    <div class="thumb-wrap">
+                        <img src="${thumb}" alt="thumbnail">
+                    </div>
+                    <div class="video-info">
+                        <div class="v-title">${title}</div>
+                        <div class="v-meta">Zab-Tube • New Video</div>
+                    </div>
+                </a>`;
+        });
+    } catch (e) {
+        console.log("Error loading videos");
+    }
+}
+
+// Page load hote hi videos aa jayengi
+window.onload = loadHomeVideos;
+</script>
+
 </html>
 
