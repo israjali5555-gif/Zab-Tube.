@@ -105,8 +105,7 @@
 
 <script>
 async function loadHomeVideos() {
-    // Testing ke liye T-Series ka ID (Ye hamesha chalta hai)
-    const channelId = 'UC_x5XG1OV2P6uYZ5FSM9P_Q'; 
+    const channelId = 'UC_x5XG1OV2P6uYZ5FSM9P_Q'; // T-Series ID jo kaam kar raha hai
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
     const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
@@ -116,15 +115,18 @@ async function loadHomeVideos() {
         const feed = document.querySelector('.main-feed');
         
         if(data.items) {
-            feed.innerHTML = ''; // Purana khali karo
+            feed.innerHTML = ''; 
             data.items.forEach(item => {
-                const videoId = item.link.split('v=')[1];
+                // Video ID nikalne ka sahi tarika taki "Video Unavailable" na aaye
+                const videoId = item.guid.split(':').pop(); 
+                
                 feed.innerHTML += `
-                    <a href="player.html?v=${videoId}" class="video-item" style="display:block; margin-bottom:15px; text-decoration:none;">
+                    <a href="player.html?v=${videoId}" class="video-item" style="display:block; margin-bottom:20px; text-decoration:none;">
                         <div class="thumb-wrap">
-                            <img src="${item.thumbnail}" style="width:100%; border-radius:10px;">
+                            <img src="${item.thumbnail}" style="width:100%; border-radius:12px;">
                         </div>
-                        <div style="color:white; padding:10px; font-weight:bold;">${item.title}</div>
+                        <div style="color:white; padding:10px; font-weight:bold; font-size:15px;">${item.title}</div>
+                        <div style="color:#aaa; padding-left:10px; font-size:12px;">Zab-Tube • Trending Video</div>
                     </a>`;
             });
         }
@@ -134,7 +136,6 @@ async function loadHomeVideos() {
 }
 window.onload = loadHomeVideos;
 </script>
-
 
 </html>
 
