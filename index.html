@@ -55,15 +55,19 @@
         }
         .nav-tab { text-align: center; color: white; text-decoration: none; opacity: 0.8; }
         .nav-tab.active { opacity: 1; }
-        .nav-tab i { font-size: 22px; display: block; margin-bottom: 2px; }
-
+        .nav-tab { filter: grayscale(100%); }
+    
     </style>
 </head>
 <body>
 
-    <header>
+        <header>
         <div class="logo"><span>▶</span> Zab-Tube</div>
-        <div class="header-icons">🔍 🔔 👤</div>
+        <div class="header-icons">
+            <span style="color: white; font-size: 18px; margin-left: 15px;">🔍</span>
+            <span style="color: white; font-size: 18px; margin-left: 15px;">🔔</span>
+            <span style="color: white; font-size: 18px; margin-left: 15px;">👤</span>
+        </div>
     </header>
 
     <div class="categories">
@@ -101,17 +105,27 @@
                     <div class="v-title">Ghar Se Nikalte Hi - Full HD Video | Udit Narayan</div>
                     <div class="v-meta">T-Series • 1 crore views • 1 year ago</div>
                 </div>
-            </div>
-        </a>
-    </div>
+            <div class="bottom-bar">
+    <a href="index.html" class="nav-tab active">
+        <div style="font-size: 20px;">🏠</div>
+        <div style="font-size: 10px;">Home</div>
+    </a>
+    <a href="shorts.html" class="nav-tab">
+        <div style="font-size: 20px;">⚡</div>
+        <div style="font-size: 10px;">Shorts</div>
+    </a>
+    <a href="upload.html" class="nav-tab">
+        <div style="font-size: 35px; margin-top: -5px;">+</div>
+    </a>
+    <a href="#" class="nav-tab">
+        <div style="font-size: 20px;">📺</div>
+        <div style="font-size: 10px;">Subs</div>
+    </a>
+    <a href="you.html" class="nav-tab">
+        <div style="font-size: 20px;">👤</div>
+        <div style="font-size: 10px;">You</div>
+    </a>
 
-    <div class="bottom-bar">
-        <a href="index.html" class="nav-tab active">🏠<br>Home</a>
-        <a href="#" class="nav-tab">⚡<br>Shorts</a>
-        <a href="#" class="nav-tab" style="font-size: 30px;">+</a>
-        <a href="#" class="nav-tab">📺<br>Subs</a>
-        <a href="#" class="nav-tab">👤<br>You</a>
-    </div>
 
 </body>
 </html>
