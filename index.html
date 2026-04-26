@@ -3,101 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zab-Tube | Home Fix</title>
+    <title>Zab-Tube | Home</title>
     <style>
+        /* Global Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', sans-serif; }
-        header { display: flex; justify-content: space-between; padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000; align-items: center; }
-        .logo { font-size: 20px; font-weight: bold; color: white; }
-        .logo span { color: #ff0000; }
-        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 10px; scrollbar-width: none; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', Arial, sans-serif; }
+
+        /* Header */
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000; 
+        }
+        .logo { font-size: 20px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .logo span { color: #ff0000; font-size: 22px; }
+        .header-icons { display: flex; gap: 18px; font-size: 20px; }
+
+        /* Categories Scrollbar */
+        .categories { 
+            display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; 
+            background: #0f0f0f; scrollbar-width: none; 
+        }
+        .categories::-webkit-scrollbar { display: none; }
         .chip { background: #272727; padding: 7px 15px; border-radius: 8px; font-size: 14px; white-space: nowrap; }
         .chip.active { background: white; color: black; }
-        
-        /* YouTube Style Design */
-        .main-feed { padding-bottom: 80px; }
-        .video-card { width: 100%; margin-bottom: 20px; cursor: pointer; }
-        .thumb-wrap { width: 100%; aspect-ratio: 16/9; background: #222; overflow: hidden; }
-        .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        .video-info { display: flex; padding: 12px; gap: 12px; }
-        .channel-pfp { width: 36px; height: 36px; border-radius: 50%; background: #444; flex-shrink: 0; }
-        .v-title { font-size: 15px; font-weight: 500; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .v-meta { font-size: 12px; color: #aaa; margin-top: 4px; }
 
-        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: #0f0f0f; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #272727; font-size: 10px; }
-        .nav-item { text-align: center; color: white; text-decoration: none; opacity: 0.8; }
+        /* Video Card Style - Exactly like YouTube */
+        .main-feed { padding-bottom: 80px; }
+        .video-card { width: 100%; margin-bottom: 12px; cursor: pointer; text-decoration: none; color: white; display: block; }
+        .thumb-container { width: 100%; aspect-ratio: 16/9; background: #333; position: relative; }
+        .thumb-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .video-info { display: flex; padding: 12px; gap: 12px; }
+        .channel-avatar { width: 36px; height: 36px; border-radius: 50%; background: #444; flex-shrink: 0; }
+        .text-content { flex: 1; }
+        .v-title { font-size: 15px; font-weight: 500; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .v-meta { font-size: 12px; color: #aaa; }
+
+        /* Bottom Bar */
+        .bottom-bar { 
+            position: fixed; bottom: 0; width: 100%; background: #0f0f0f; 
+            display: flex; justify-content: space-around; padding: 10px 0; 
+            border-top: 1px solid #272727; z-index: 1001; 
+        }
+        .nav-tab { text-align: center; color: white; text-decoration: none; font-size: 10px; opacity: 0.8; }
+        .nav-tab.active { opacity: 1; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><span>►</span> Zab-Tube</div>
-        <div style="font-size: 18px;">🔍 &nbsp; 🔔 &nbsp; 👤</div>
+        <div class="header-icons">
+            <span>🔍</span><span>🔔</span><span>👤</span>
+        </div>
     </header>
 
     <div class="categories">
         <div class="chip active">All</div>
-        <div class="chip">New to you</div>
         <div class="chip">Music</div>
         <div class="chip">Bhojpuri</div>
-        <div class="chip">South Movie</div>
+        <div class="chip">South</div>
+        <div class="chip">New to you</div>
     </div>
 
     <div class="main-feed" id="video-feed">
-        <p id="loading-msg" style="text-align:center; padding:50px; color:#aaa;">Searching Videos...</p>
-    </div>
+        </div>
 
     <div class="bottom-bar">
-        <a href="index.html" class="nav-item">🏠<br>Home</a>
-        <a href="#" class="nav-item">⚡<br>Shorts</a>
-        <div class="nav-item" style="font-size:25px; margin-top:-5px;">+</div>
-        <a href="#" class="nav-item">📺<br>Subs</a>
-        <a href="you.html" class="nav-item">👤<br>You</a>
+        <a href="index.html" class="nav-tab active">🏠<br>Home</a>
+        <a href="shorts.html" class="nav-tab">⚡<br>Shorts</a>
+        <div class="nav-tab" style="font-size: 25px; margin-top: -5px;">+</div>
+        <a href="#" class="nav-tab">📺<br>Subs</a>
+        <a href="you.html" class="nav-tab">👤<br>You</a>
     </div>
 
     <script>
-    async function loadFixVideos() {
+        // Ye list 15-20 videos ka dhancha banayegi
+        const demoVideos = [
+            { id: 'Ks-_MzkzoQg', title: 'New Bollywood Blockbuster Song 2024', thumb: 'https://img.youtube.com/vi/Ks-_MzkzoQg/maxresdefault.jpg' },
+            { id: 'dQw4w9WgXcQ', title: 'Bhojpuri Non-Stop Hits - Superhit Songs', thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg' },
+            { id: '3JZ_D3ELwOQ', title: 'South Indian Movie Dubbed in Hindi', thumb: 'https://img.youtube.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg' },
+            { id: '9bZkp7q19f0', title: 'Official Trailer: The Last Legend', thumb: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg' },
+            { id: 'kJQP7kiw5Fk', title: 'Desi Comedy Nights - Part 12', thumb: 'https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg' },
+            { id: 'fRh_vgS2dFE', title: 'Zab-Tube Exclusive: Music Video', thumb: 'https://img.youtube.com/vi/fRh_vgS2dFE/maxresdefault.jpg' },
+            { id: 'yJg-Y5byMMw', title: 'Punjabi Gabru - Latest Punjabi Song', thumb: 'https://img.youtube.com/vi/yJg-Y5byMMw/maxresdefault.jpg' },
+            { id: 'V1Pl8CzNzCw', title: 'Bhakti Sagar - Morning Bhajans', thumb: 'https://img.youtube.com/vi/V1Pl8CzNzCw/maxresdefault.jpg' },
+            { id: 'L_jWHffIx5E', title: 'New Movie Update 2026', thumb: 'https://img.youtube.com/vi/L_jWHffIx5E/maxresdefault.jpg' },
+            { id: 'JGwWNGJdvx8', title: 'Technical News - Zab-Tube Special', thumb: 'https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg' },
+            { id: 'CevxZvSJLk8', title: 'Top 10 Songs of the Week', thumb: 'https://img.youtube.com/vi/CevxZvSJLk8/maxresdefault.jpg' },
+            { id: 'K4TOrB7at0Y', title: 'Gaming Pro: Live Stream Now', thumb: 'https://img.youtube.com/vi/K4TOrB7at0Y/maxresdefault.jpg' },
+            { id: 'OPf0UbEgLnM', title: 'Vlog: My Journey to India', thumb: 'https://img.youtube.com/vi/OPf0UbEgLnM/maxresdefault.jpg' },
+            { id: '7wtfhZwyrcc', title: 'Cooking Magic: Recipe of the Day', thumb: 'https://img.youtube.com/vi/7wtfhZwyrcc/maxresdefault.jpg' },
+            { id: 'hT_nvWreIhg', title: 'Zab-Tube Maha Library Special', thumb: 'https://img.youtube.com/vi/hT_nvWreIhg/maxresdefault.jpg' }
+        ];
+
         const feed = document.getElementById('video-feed');
-        // T-Series (UC_x5XG1OV2P6uYZ5FSM9P_Q) aur Goldmines (UC295C_H_C6v6L868qA7_A5g) ki videos
-        const channels = ['UC_x5XG1OV2P6uYZ5FSM9P_Q', 'UC295C_H_C6v6L868qA7_A5g'];
         
-        let allItems = [];
-
-        for(let id of channels) {
-            try {
-                const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + id)}`;
-                const response = await fetch(fetchUrl);
-                const data = await response.json();
-                if(data.items) allItems = [...allItems, ...data.items];
-            } catch(e) { console.log("Error fetching channel: " + id); }
-        }
-
-        if(allItems.length > 0) {
-            feed.innerHTML = ''; // Loading mitao
-            allItems.sort(() => Math.random() - 0.5); // Mix videos
-
-            allItems.forEach(item => {
-                // Correct Video ID logic for player.html
-                const vId = item.guid.split(':').pop(); 
-                feed.innerHTML += `
-                    <div class="video-card" onclick="location.href='player.html?v=${vId}'">
-                        <div class="thumb-wrap">
-                            <img src="${item.thumbnail}" alt="thumb">
+        // Videos ko screen par chipkana
+        demoVideos.forEach(v => {
+            feed.innerHTML += `
+                <div class="video-card" onclick="location.href='player.html?v=${v.id}'">
+                    <div class="thumb-container">
+                        <img src="${v.thumb}" alt="thumb">
+                    </div>
+                    <div class="video-info">
+                        <div class="channel-avatar"></div>
+                        <div class="text-content">
+                            <div class="v-title">${v.title}</div>
+                            <div class="v-meta">Zab-Tube • 2.5M views • 1 hour ago</div>
                         </div>
-                        <div class="video-info">
-                            <div class="channel-pfp"></div>
-                            <div>
-                                <div class="v-title">${item.title}</div>
-                                <div class="v-meta">Zab-Tube • Trending • Now</div>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-        } else {
-            document.getElementById('loading-msg').innerText = "Network Error! Please Refresh.";
-        }
-    }
-    window.onload = loadFixVideos;
+                    </div>
+                </div>`;
+        });
     </script>
 </body>
 </html>
