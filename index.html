@@ -1,68 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zab-Tube | Home</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', Arial, sans-serif; }
-
-        /* Header with Search */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 15px; position: sticky; top: 0; background: #0f0f0f; z-index: 1000;
-        }
-        .logo { font-size: 20px; font-weight: bold; color: #fff; letter-spacing: -1px; }
-        .logo span { color: #ff0000; }
-        .header-icons { display: flex; gap: 18px; font-size: 20px; }
-
-        /* Category Chips */
-        .categories {
-            display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px;
-            scrollbar-width: none; background: #0f0f0f;
-        }
-        .categories::-webkit-scrollbar { display: none; }
-        .chip {
-            background: #272727; padding: 7px 15px; border-radius: 8px;
-            font-size: 14px; white-space: nowrap; cursor: pointer;
-        }
-        .chip.active { background: white; color: black; }
-
-        /* Video List Area */
-        .main-feed { padding-bottom: 70px; }
-        
-        .video-item { margin-bottom: 25px; text-decoration: none; color: white; display: block; }
-        .thumb-wrap { position: relative; width: 100%; }
-        .thumb-wrap img { width: 100%; display: block; }
-        .time-tag { 
-            position: absolute; bottom: 8px; right: 8px; 
-            background: rgba(0,0,0,0.8); padding: 2px 6px; 
-            border-radius: 4px; font-size: 12px; 
-        }
-
-        .video-info { display: flex; padding: 12px; gap: 12px; }
-        .chan-img { width: 36px; height: 36px; border-radius: 50%; background: #333; flex-shrink: 0; }
-        .title-box { flex: 1; }
-        .v-title { font-size: 16px; font-weight: 500; line-height: 1.3; margin-bottom: 4px; }
-        .v-meta { font-size: 13px; color: #aaa; }
-
-        /* Bottom Menu like Screenshot 1 */
-        .bottom-bar {
-            position: fixed; bottom: 0; width: 100%; background: #0f0f0f;
-            display: flex; justify-content: space-around; padding: 8px 0;
-            border-top: 1px solid #272727; font-size: 11px;
-        }
-        .nav-tab { text-align: center; color: white; text-decoration: none; opacity: 0.8; }
-        .nav-tab.active { opacity: 1; }
-        .nav-tab { filter: grayscale(100%); }
-    
-    </style>
-</head>
 <body>
-
-        <header>
-        <div class="logo"><span>▶</span> Zab-Tube</div>
+    <header>
+        <div class="logo"><span>●</span> Zab-Tube</div>
         <div class="header-icons">
             <span style="color: white; font-size: 18px; margin-left: 15px;">🔍</span>
             <span style="color: white; font-size: 18px; margin-left: 15px;">🔔</span>
@@ -72,53 +10,67 @@
 
     <div class="categories">
         <div class="chip active">All</div>
-        <div class="chip">New to you</div>
         <div class="chip">Music</div>
-        <div class="chip">Gaming</div>
-        <div class="chip">Live</div>
-        <div class="chip">Bollywood</div>
+        <div class="chip">Bhojpuri</div>
+        <div class="chip">South</div>
+        <div class="chip">Punjabi</div>
     </div>
 
-    <div class="main-feed" id="video-feed">
+    <div class="main-feed" id="video-feed" style="padding-bottom: 80px;">
+        </div>
+
+    <div class="bottom-bar">
+        <a href="index.html" class="nav-tab active">🏠<br><span style="font-size:10px">Home</span></a>
+        <a href="shorts.html" class="nav-tab">⚡<br><span style="font-size:10px">Shorts</span></a>
+        <div class="nav-tab" style="font-size:30px">+</div>
+        <a href="#" class="nav-tab">📺<br><span style="font-size:10px">Subs</span></a>
+        <a href="you.html" class="nav-tab">👤<br><span style="font-size:10px">You</span></a>
     </div>
-     
 
 <script>
-async function loadHomeVideos() {
-    // Ye link YouTube ki trending aur free library se videos uthayega
-    const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uYZ5FSM9P_Q')}`;
+async function loadMahaLibrary() {
+    const feed = document.getElementById('video-feed');
+    feed.innerHTML = '<p style="color:white; text-align:center; padding:20px;">Maha Library load ho rahi hai...</p>';
 
-    try {
-        const response = await fetch(fetchUrl);
-        const data = await response.json();
-        const feed = document.getElementById('video-feed');
-        
-        if(data.items) {
-            feed.innerHTML = ''; // Khali dabba saaf karein
-            data.items.forEach(item => {
-                const videoId = item.guid.split(':').pop(); 
-                feed.innerHTML += `
-                    <div class="video-item" onclick="location.href='player.html?v=${videoId}'" style="cursor:pointer; margin-bottom:20px;">
-                        <div class="thumb-wrap" style="position:relative;">
-                            <img src="${item.thumbnail}" style="width:100%; border-radius:12px;">
-                        </div>
-                        <div class="video-info" style="display:flex; padding:12px; gap:12px;">
-                            <div style="width:36px; height:36px; border-radius:50%; background:#333;"></div>
-                            <div class="title-box">
-                                <div class="v-title" style="color:white; font-weight:bold; font-size:14px; line-height:1.2;">${item.title}</div>
-                                <div class="v-meta" style="color:#aaa; font-size:12px; margin-top:4px;">Zab-Tube • 1.2M views • 2 hours ago</div>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-        }
-    } catch (e) {
-        console.log("Videos load nahi hui!");
+    // Saare Bade Channels (Bollywood, South, Punjabi, Bhojpuri, Hollywood)
+    const channels = [
+        'UC_x5XG1OV2P6uYZ5FSM9P_Q', 'UC-SCAQ9X0YdSe7_s_6S3S3A', // Bollywood
+        'UC295C_H_C6v6L868qA7_A5g', 'UCX52tYZiEHhote-Uu_S_ZpA', // South
+        'UC62_itC68E_vE8_X_f5p9Ew', 'UCf6uB06VvPsp6pY_pW_vjYg', // Bhojpuri
+        'UC8I8U89Xz8X7C2W2pQ_X0Yg', 'UC9K66pZ_iM-44_M3A_K_v7A'  // Punjabi & Hollywood
+    ];
+
+    let allVideos = [];
+
+    for (let id of channels) {
+        try {
+            const fetchUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + id)}`;
+            const response = await fetch(fetchUrl);
+            const data = await response.json();
+            if(data.items) allVideos = [...allVideos, ...data.items];
+        } catch (e) { console.log("Slow connection"); }
     }
+
+    // Videos ko mix karna taaki 100-200 videos ka maza aaye
+    allVideos.sort(() => Math.random() - 0.5);
+
+    feed.innerHTML = ''; 
+    allVideos.forEach(item => {
+        const videoId = item.guid.split(':').pop(); 
+        feed.innerHTML += `
+            <div class="video-item" onclick="location.href='player.html?v=${videoId}'" style="margin-bottom:20px; cursor:pointer;">
+                <img src="${item.thumbnail}" style="width:100%; border-radius:12px;">
+                <div style="display:flex; padding:12px; gap:12px;">
+                    <div style="width:36px; height:36px; border-radius:50%; background:#444;"></div>
+                    <div>
+                        <div style="color:white; font-weight:bold; font-size:14px;">${item.title}</div>
+                        <div style="color:#aaa; font-size:12px; margin-top:4px;">Zab-Tube Maha Library</div>
+                    </div>
+                </div>
+            </div>`;
+    });
 }
-window.onload = loadHomeVideos;
+window.onload = loadMahaLibrary;
 </script>
-
-
+</body>
 </html>
-
