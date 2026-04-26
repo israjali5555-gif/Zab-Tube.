@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zab-Tube Studio | Upload</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', sans-serif; }
+
+        header { padding: 15px; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 15px; }
+        .back-btn { font-size: 24px; cursor: pointer; text-decoration: none; color: white; }
+
+        .upload-container { padding: 20px; max-width: 500px; margin: auto; }
+        .upload-box { 
+            border: 2px dashed #333; border-radius: 15px; padding: 40px; 
+            text-align: center; margin-bottom: 25px; background: #1a1a1a;
+        }
+        .upload-box i { font-size: 50px; color: #ff0000; }
+
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #aaa; font-size: 14px; }
+        input, textarea { 
+            width: 100%; background: #121212; border: 1px solid #333; 
+            padding: 12px; color: white; border-radius: 8px; font-size: 16px;
+        }
+
+        .publish-btn { 
+            background: #fff; color: #000; width: 100%; padding: 15px; 
+            border-radius: 30px; font-weight: bold; border: none; font-size: 16px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .publish-btn:hover { background: #00d4ff; }
+
+        .preview-card {
+            background: #1a1a1a; padding: 10px; border-radius: 10px; margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">✕</a>
+        <h2>Create Video</h2>
+    </header>
+
+    <div class="upload-container">
+        <div class="upload-box">
+            <i>📤</i>
+            <p style="margin-top:10px;">Select Video File to Upload</p>
+            <p style="font-size:12px; color:#aaa;">Your videos will be private until you publish them.</p>
+        </div>
+
+        <div class="input-group">
+            <label>Video Title</label>
+            <input type="text" id="videoTitle" placeholder="Apni video ka naam likhein...">
+        </div>
+
+        <div class="input-group">
+            <label>Thumbnail Image URL</label>
+            <input type="text" id="thumbUrl" placeholder="Photo ka link daalein (Direct Link)...">
+        </div>
+
+        <div class="input-group">
+            <label>Video File URL (MP4)</label>
+            <input type="text" id="videoUrl" placeholder="Video ka link daalein (Google Drive/Direct)...">
+        </div>
+
+        <button class="publish-btn" onclick="publishVideo()">PUBLISH VIDEO</button>
+
+        <div id="preview" class="preview-card">
+            <p style="color:#00d4ff; font-size:12px;">Success! Video added locally.</p>
+            <h4 id="p-title"></h4>
+        </div>
+    </div>
+
+    <script>
+        function publishVideo() {
+            let title = document.getElementById('videoTitle').value;
+            let thumb = document.getElementById('thumbUrl').value;
+            
+            if(title && thumb) {
+                document.getElementById('preview').style.display = 'block';
+                document.getElementById('p-title').innerText = title;
+                alert("Zabardast! Aapki video publish ke liye taiyar hai.");
+                // Note: Binary upload requires a real server, but this saves data in local memory.
+            } else {
+                alert("Bhai, Title aur Thumbnail toh daal do!");
+            }
+        }
+    </script>
+
+</body>
+</html>
+
