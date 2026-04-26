@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zab-Tube | You</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0f0f0f; color: white; font-family: 'Roboto', sans-serif; padding-bottom: 80px; }
+
+        /* User Header Section */
+        .user-header { display: flex; align-items: center; padding: 20px 15px; gap: 15px; }
+        .user-pic { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(45deg, #00d4ff, #ff0055); }
+        .user-name { font-size: 24px; font-weight: bold; }
+        .handle { color: #aaa; font-size: 14px; margin-top: 4px; }
+
+        /* Section Headings */
+        .section-head { display: flex; justify-content: space-between; align-items: center; padding: 15px; font-size: 18px; font-weight: bold; }
+        .view-all { color: #00d4ff; font-size: 14px; font-weight: normal; }
+
+        /* History Horizontal Scroll like Screenshot 6 */
+        .history-scroll { display: flex; overflow-x: auto; gap: 12px; padding: 0 15px; scrollbar-width: none; }
+        .history-scroll::-webkit-scrollbar { display: none; }
+        .history-item { min-width: 160px; }
+        .history-thumb { width: 160px; height: 90px; border-radius: 10px; background: #272727; position: relative; }
+        .history-title { font-size: 13px; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Playlists Section like Screenshot 6 */
+        .playlist-grid { padding: 0 15px; }
+        .playlist-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .playlist-thumb { width: 120px; height: 70px; border-radius: 8px; background: #272727; position: relative; }
+        .playlist-meta { font-size: 14px; font-weight: 500; }
+        .playlist-sub { font-size: 12px; color: #aaa; margin-top: 3px; }
+
+        /* Bottom Menu (Same as Index) */
+        .bottom-bar {
+            position: fixed; bottom: 0; width: 100%; background: #0f0f0f;
+            display: flex; justify-content: space-around; padding: 10px 0;
+            border-top: 1px solid #272727; font-size: 11px; z-index: 100;
+        }
+        .nav-tab { text-align: center; color: white; text-decoration: none; opacity: 0.7; }
+        .nav-tab.active { opacity: 1; border-top: 2px solid white; padding-top: 8px; }
+    </style>
+</head>
+<body>
+
+    <div class="user-header">
+        <div class="user-pic"></div>
+        <div>
+            <div class="user-name">Israj Zabardast</div>
+            <div class="handle">@israj_creator • View channel ></div>
+        </div>
+    </div>
+
+    <div class="section-head">
+        <span>History</span>
+        <span class="view-all">View all</span>
+    </div>
+    <div class="history-scroll">
+        <div class="history-item">
+            <div class="history-thumb"></div>
+            <div class="history-title">Chand Sitare - Kaho Naa Pyaar Hai</div>
+        </div>
+        <div class="history-item">
+            <div class="history-thumb"></div>
+            <div class="history-title">Ghar Se Nikalte Hi - Udit Narayan</div>
+        </div>
+        <div class="history-item">
+            <div class="history-thumb"></div>
+            <div class="history-title">Zab-Tube Official Trailer 2026</div>
+        </div>
+    </div>
+
+    <div class="section-head">
+        <span>Playlists</span>
+        <span class="view-all">Create new</span>
+    </div>
+    <div class="playlist-grid">
+        <div class="playlist-row">
+            <div class="playlist-thumb"></div>
+            <div>
+                <div class="playlist-meta">Watch Later</div>
+                <div class="playlist-sub">Private • 12 videos</div>
+            </div>
+        </div>
+        <div class="playlist-row">
+            <div class="playlist-thumb"></div>
+            <div>
+                <div class="playlist-meta">Liked videos</div>
+                <div class="playlist-sub">Private • 90 videos</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <a href="index.html" class="nav-tab">🏠<br>Home</a>
+        <a href="shorts.html" class="nav-tab">⚡<br>Shorts</a>
+        <a href="#" class="nav-tab" style="font-size: 25px;">+</a>
+        <a href="#" class="nav-tab">📺<br>Subs</a>
+        <a href="you.html" class="nav-tab active">👤<br>You</a>
+    </div>
+
+</body>
+</html>
+
